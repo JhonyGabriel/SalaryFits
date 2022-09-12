@@ -1,0 +1,31 @@
+version: '3.4'
+
+services:
+  app:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: salaryfits_app
+    restart: 'always'
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    env_file: .env
+    environment:
+      RAILS_ENV: development
+
+  db:
+    image: postgres:12
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: "12345678"
+      POSTGRES_USER: "postgres"
+      POSTGRES_DB: "salaryfits_development"
+    ports:
+      - "5432:5432"
+
+volumes:
+  db_data:
+

@@ -1,0 +1,2 @@
+class SalaryFit < ApplicationRecord
+end

@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1 class="mb-5">[Entrevista SalaryFits] Etapa 2 - Tarefa</h1>
+
+<div id="salary_fits" class="d-flex ms-2">
+  <% @salary_fits.each do |salary_fit| %>
+    <%= render salary_fit %>
+    <p class="me-4">
+      <%= link_to "Show this salary fit", salary_fit %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New salary fit", new_salary_fit_path %>

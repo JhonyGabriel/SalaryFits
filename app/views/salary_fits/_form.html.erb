@@ -1,0 +1,32 @@
+<%= form_with(model: salary_fit) do |form| %>
+  <% if salary_fit.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(salary_fit.errors.count, "error") %> prohibited this salary_fit from being saved:</h2>
+
+      <ul>
+        <% salary_fit.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :idade, style: "display: block" %>
+    <%= form.text_field :idade %>
+  </div>
+
+  <div>
+    <%= form.label :descricao, style: "display: block" %>
+    <%= form.text_area :descricao %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
