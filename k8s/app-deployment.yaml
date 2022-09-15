@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.26.0 (40646f47)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: app
+  name: app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: app
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.26.0 (40646f47)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: app
+    spec:
+      containers:
+        - env:
+            - name: RAILS_ENV
+              value: development
+            - name: SALARYFITS_DATABASE
+              valueFrom:
+                configMapKeyRef:
+                  key: SALARYFITS_DATABASE
+                  name: env
+            - name: SALARYFITS_DATABASE_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  key: SALARYFITS_DATABASE_PASSWORD
+                  name: env
+            - name: SALARYFITS_DATABASE_URL
+              valueFrom:
+                configMapKeyRef:
+                  key: SALARYFITS_DATABASE_URL
+                  name: env
+            - name: SALARYFITS_DATABASE_USERNAME
+              valueFrom:
+                configMapKeyRef:
+                  key: SALARYFITS_DATABASE_USERNAME
+                  name: env
+          image: jhony37/salaryfits:1.4
+          name: salaryfits-app
+          ports:
+            - containerPort: 3000
+          resources: {}
+      restartPolicy: Always
+status: {}
